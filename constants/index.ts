@@ -13,5 +13,23 @@ const navItems = [
     },
 ]
 
+const categoriesItems = [
+    {
+        name : "menswear",
+        uiName : "Menswear",
+    },
+    {
+        name : "womenswear",
+        uiName : "Womenswear",
+    },
+    {
+        name : "jewellery",
+        uiName : "Jewellery",
+    },
+    {
+        name : "electronics",
+        uiName : "Electronics",
+    },
+]
 
-export {navItems}
+export {navItems,categoriesItems}
