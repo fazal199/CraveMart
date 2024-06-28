@@ -22,15 +22,16 @@ const FilterSidebar = () => {
           </div>
         </div>
         <div className="mt-5">
-          <h3 className="text-base font-semibold mb-2">Price</h3>
+          <h3 className="text-base font-semibold mb-2">
+            Price:
+            <div className="text-center w-full mt-4 font-bold text-lg">$78</div>
+          </h3>
           <Slider
             min={0}
             max={100}
             step={1}
             className="w-full bg-first-500 rounded-md"
           />
-
-          <div className="text-center w-full mt-4 font-bold text-lg">$78</div>
         </div>
       </div>
     </div>

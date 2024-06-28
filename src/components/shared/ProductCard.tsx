@@ -1,10 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import React from "react";
 
-const ProductCard = ({ id, name, price }:any) => {
+const ProductCard = ({ id, name, price }: any) => {
+  const router = useRouter();
   return (
     <div
+      onClick={() => router.push(`/product/${id}`)}
       key={id}
       className="bg-background rounded-lg shadow-lg overflow-hidden"
     >
@@ -19,10 +22,11 @@ const ProductCard = ({ id, name, price }:any) => {
         <h3 className="text-base font-semibold mt-2">{name}</h3>
         <p className="text-muted-foreground mt-2">${price}</p>
         <Button
+          onClick={() => router.push(`/product/${id}`)}
           variant="outline"
           className="mt-4 w-full bg-first-800 text-white rounded-lg shadow-sm shadow-black border-none"
         >
-          Add to Cart
+          Continue...
         </Button>
       </div>
     </div>

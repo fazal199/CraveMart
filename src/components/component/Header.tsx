@@ -5,14 +5,13 @@ import Image from "next/image";
 import { navItems } from "../../../constants";
 import { usePathname } from "next/navigation";
 
-
 export function Header() {
   const pathname = usePathname();
 
   return (
     <header className="box-shadow-light py-2">
       <div className="flex h-16 w-full items-center shadow-sm justify-between bg-background px-4 max-w-7xl mx-auto">
-        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+        <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <Image
             src={"/logo.jpg"}
             alt="logo"

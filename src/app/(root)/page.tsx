@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import FilterSidebar from "./components/FilterSidebar";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "../../components/shared/ProductCard";
 import {
   Pagination,
   PaginationContent,
@@ -11,8 +11,15 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useSearchParams } from "next/navigation";
 
 const HomePage = () => {
+
+  const searchParams = useSearchParams();
+  const categorie = searchParams.get("category");
+
+  
+
   const products = [
     {
       id: 1,
@@ -71,7 +78,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="grid  grid-cols-[300px_1fr] gap-8 p-6">
+    <section className="grid  grid-cols-[300px_1fr] gap-8 p-6">
       <FilterSidebar />
       <div>
         <div className="grid grid-cols-3 gap-6">
@@ -109,7 +116,7 @@ const HomePage = () => {
           </PaginationContent>
         </Pagination>
       </div>
-    </div>
+    </section>
   );
 };
 
