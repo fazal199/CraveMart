@@ -11,7 +11,7 @@ const OrderDetailsPage = () => {
             <h1 className="text-center text-6xl font-semibold mb-12 mt-20">Your Order Of 12-04-2024</h1>
 
             <div className="grid gap-4 max-w-7xl mx-auto mt-16">
-               <Link href={`/product/2`}>
+                <Link href={`/product/2`}>
                     <Card className="flex items-center gap-4 relative px-8 py-2">
                         <Image src="/placeholder.svg" alt={"hello"} width={80} height={80} className="rounded-md" />
                         <div className="flex-1">
@@ -23,9 +23,9 @@ const OrderDetailsPage = () => {
                                 </div>
                             </div>
                         </div>
-    
+
                     </Card>
-               </Link>
+                </Link>
 
             </div>
         </section>
