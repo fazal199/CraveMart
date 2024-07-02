@@ -1,0 +1,1 @@
+fix the extension of img as well as font

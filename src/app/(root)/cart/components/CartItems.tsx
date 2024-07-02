@@ -22,7 +22,7 @@ const CartItems = () => {
                             >
                                 <PlusIcon />
                             </Button>
-                            <div>Qty</div>
+                            <div>10</div>
                             <Button
                                 size="icon"
                                 variant="outline"
