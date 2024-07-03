@@ -58,34 +58,22 @@ export async function POST(req: Request) {
   console.log(evt);
   // CREATE
   if (eventType === "user.created") {
-    const { id, email_addresses, username,image_url } =
-      evt.data;
+    const { id, email_addresses, username, image_url } = evt.data;
 
-      const user = {
-        username: username,
-        avatar: image_url || "",
-        email: email_addresses[0].email_address,
-        clerkId: id,
-      };
-    
+    const user = {
+      username: username,
+      avatar: image_url || "",
+      email: email_addresses[0].email_address,
+      clerkId: id,
+    };
 
     const newUser = await createUser(user);
-
-    // Set public metadata
-    if (newUser) {
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: newUser._id,
-        },
-      });
-    }
 
     return NextResponse.json({
       message: "User Created Successfully!",
       user: newUser,
-    })
+    });
   }
-
 
   // UPDATE
   if (eventType === "user.updated") {

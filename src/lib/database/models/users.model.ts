@@ -24,7 +24,6 @@ const userSchema: Schema<UserInterface> = new Schema(
       unique: true,
       trim: true,
       lowercase: true,
-      match: [/.*\@.*\..*/, "Please use a valid email address"],
     },
     avatar: {
       type: String,
