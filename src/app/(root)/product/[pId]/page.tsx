@@ -118,6 +118,7 @@ const ProductDetailPage = () => {
         <div className="mt-10 grid grid-cols-3 w-full gap-6">
           {products.map((product) => (
             <ProductCard
+              key={product.id}
               id={product.id}
               name={product.name}
               price={product.price}

@@ -18,7 +18,7 @@ const HomePage = () => {
   const searchParams = useSearchParams();
   const categorie = searchParams.get("category");
 
-  
+
 
   const products = [
     {
@@ -84,6 +84,7 @@ const HomePage = () => {
         <div className="grid grid-cols-3 gap-6">
           {products.map((product) => (
             <ProductCard
+              key={product.id}
               id={product.id}
               name={product.name}
               price={product.price}
@@ -91,7 +92,7 @@ const HomePage = () => {
           ))}
         </div>
 
-        <Pagination className="mt-4 bg-first-200 text-black py-3">
+        <Pagination className="mt-4  text-black py-3">
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious href="#" />
@@ -107,9 +108,7 @@ const HomePage = () => {
             <PaginationItem>
               <PaginationLink href="#">3</PaginationLink>
             </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
+           
             <PaginationItem>
               <PaginationNext href="#" />
             </PaginationItem>

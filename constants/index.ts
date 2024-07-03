@@ -11,6 +11,10 @@ const navItems = [
     name: "Cart",
     link: "/cart",
   },
+  {
+    name: "Profile",
+    link: "/profile",
+  },
 ];
 
 const categoriesItems = [

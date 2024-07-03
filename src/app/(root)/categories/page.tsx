@@ -10,6 +10,7 @@ const CategoryPage = () => {
       <div className="container grid  gap-6 grid-cols-2">
         {categoriesItems.map((categorie) => (
           <CategoryCard
+            key={categorie.link}
             link={categorie.link}
             categoryName={categorie.uiName}
             imgSrc={categorie.imgSrc}

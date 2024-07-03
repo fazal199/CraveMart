@@ -14,7 +14,7 @@ const FilterSidebar = () => {
           <h3 className="text-base font-semibold mb-2">Category</h3>
           <div className="grid gap-5 mt-5">
             {categoriesItems.map((item) => (
-              <Label className="flex items-center gap-2">
+              <Label key={item.name} className="flex items-center gap-2">
                 <Checkbox value={item.name} />
                 {item.uiName}
               </Label>
