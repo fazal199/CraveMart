@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from "@/components/shared/Header"
 import Footer from '@/components/shared/Footer';
+import { UserButton } from '@clerk/nextjs';
 const Rootlayout = ({
   children,
 }: Readonly<{
@@ -11,6 +12,7 @@ const Rootlayout = ({
       <Header />
       <main>
         {children}
+        <UserButton/>
       </main>
       <Footer />
     </>
