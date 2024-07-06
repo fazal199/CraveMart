@@ -5,7 +5,6 @@ import ProductCard from "../../components/shared/ProductCard";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -17,7 +16,6 @@ const HomePage = () => {
 
   const searchParams = useSearchParams();
   const categorie = searchParams.get("category");
-
 
 
   const products = [
@@ -70,7 +68,7 @@ const HomePage = () => {
       image: "/placeholder.svg",
     },
     {
-      id: 8,
+      id: 9,
       name: "Sleek Wallet",
       price: 39.99,
       image: "/placeholder.svg",
@@ -108,7 +106,7 @@ const HomePage = () => {
             <PaginationItem>
               <PaginationLink href="#">3</PaginationLink>
             </PaginationItem>
-           
+
             <PaginationItem>
               <PaginationNext href="#" />
             </PaginationItem>
