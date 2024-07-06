@@ -1,7 +1,8 @@
 import React from 'react'
 import Header from "@/components/shared/Header"
 import Footer from '@/components/shared/Footer';
-import { UserButton } from '@clerk/nextjs';
+import { SignedIn, SignOutButton } from '@clerk/nextjs';
+
 const Rootlayout = ({
   children,
 }: Readonly<{
@@ -12,7 +13,8 @@ const Rootlayout = ({
       <Header />
       <main>
         {children}
-        <UserButton/>
+        <SignedIn> <SignOutButton>SignOut</SignOutButton></SignedIn>
+
       </main>
       <Footer />
     </>
