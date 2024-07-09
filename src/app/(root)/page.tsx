@@ -11,12 +11,15 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useSearchParams } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 
 const HomePage = () => {
 
   const searchParams = useSearchParams();
   const categorie = searchParams.get("category");
-
+  const user = useAuth();
+  console.log(user);
+  
 
   const products = [
     {

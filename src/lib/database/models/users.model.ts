@@ -13,7 +13,7 @@ const userSchema: Schema<UserInterface> = new Schema(
   {
     username: {
       type: String,
-      required: [true, "username is required!"],
+      required: [true, "Username is required!"],
       unique: true,
       lowercase: true,
       trim: true,
@@ -27,7 +27,7 @@ const userSchema: Schema<UserInterface> = new Schema(
     },
     avatar: {
       type: String,
-      default: "",
+      default: "/",
     },
     clerkId: {
       type: String,

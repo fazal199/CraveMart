@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const TryCatchBlock =
-  (func: any, placeName: string) => async (request: NextRequest) => {
+  (func: any, placeName: string) => async (request: NextRequest,{params}:{params:any}) => {
     try {
-      const response = await func(request);
+      const response = await func(request,params);
       return NextResponse.json(response);
     } catch (error: any) {
       console.log(`Something Went wrong in ${placeName} route`);

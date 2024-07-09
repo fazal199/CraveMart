@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { UploadIcon } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 const EditProfilePage = () => {
@@ -16,20 +17,7 @@ const EditProfilePage = () => {
                     </div>
                     <div className="space-y-6">
                         <div className="grid grid-cols-1 gap-y-6 gap-x-4 ">
-                            <div className="">
-                                <Label htmlFor="profile-picture">Profile Picture</Label>
-                                <div className="mt-1 flex items-center">
-                                    <Avatar className="h-12 w-12">
-                                        <AvatarImage src="/placeholder-user.jpg" />
-                                        <AvatarFallback>JP</AvatarFallback>
-                                    </Avatar>
-                                    <Button variant="outline" className="ml-5">
-                                        <UploadIcon />
-                                        Upload
-                                    </Button>
-                                    <input id="profile-picture" name="profile-picture" type="file" className="sr-only" />
-                                </div>
-                            </div>
+                          
                             <div className="">
                                 <Label htmlFor="username">Username</Label>
                                 <div className="mt-1">
@@ -46,6 +34,9 @@ const EditProfilePage = () => {
                     </div>
                     <div>
                         <Button type="submit" className='w-full bg-first-500'>Save</Button>
+                    </div>
+                    <div>
+                        <Link href={"/profile"}><Button className='w-full bg-first-500'>Cancle</Button></Link>
                     </div>
                 </div>
             </div>
