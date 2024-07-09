@@ -1,3 +1,4 @@
 fix the extension of img as well as font
 User model ka avatar filed me default image ka link daldo
 delete the testing route
+add total price column in the usersorderTable

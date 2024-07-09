@@ -50,12 +50,12 @@ export const GET = TryCatchBlock(async (req: NextRequest) => {
       .skip(page * 9 - 9);
   }
 
-  const TotalDocuments = productsData.length;
+  const totalDocuments = await ProductModal.countDocuments({});
 
   return new ApiResponse(true, "Product Data Sent Successfully!", 200, {
     productsData,
-    hasNextPage: TotalDocuments / 9 == 0 ? false : true,
-    nextPage: TotalDocuments / 9 == 0 ? null : page + 1,
+    hasNextPage: page * 9 < totalDocuments,
+    nextPage: page * 9 < totalDocuments ? page + 1 : null,
     hasPrevPage: page > 1,
     prevPage: page > 1 ? page - 1 : null,
   });

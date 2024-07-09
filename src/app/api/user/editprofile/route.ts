@@ -13,11 +13,16 @@ export const POST = TryCatchBlock(async (req: NextRequest) => {
   if (!username || !email || !clerkId)
     throw new ApiError(401, "Plzz Provide All Details!");
 
-  const createdUser = await UserModal.create({
-    username,
-    email,
-    clerkId,
-  });
+  const createdUser = await UserModal.updateOne(
+    { clerkId },
+    {
+      $set: {
+        username,
+        email,
+        clerkId,
+      },
+    }
+  );
 
   return new ApiResponse(true, "User created!", 200, createdUser);
-}, "/api/testing");
+}, "/api/editprofile");
