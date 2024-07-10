@@ -13,7 +13,7 @@ const Rootlayout = ({
       <Header />
       <main>
         {children}
-        <SignedIn> <SignOutButton>SignOut</SignOutButton></SignedIn>
+
 
       </main>
       <Footer />
