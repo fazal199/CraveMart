@@ -7,7 +7,7 @@ import { NextRequest } from "next/server";
 
 export const PUT = TryCatchBlock(async(req:NextRequest) => {
 
- const {clerkId,imgUrl} = await req.json();
+ const {clerkId,imgUrl} = await req.json(); 
 
  if(!clerkId || !imgUrl)
     throw new ApiError(400,"Plzz Provide imgUrl and clerkId both!");

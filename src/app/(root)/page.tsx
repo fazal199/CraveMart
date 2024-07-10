@@ -12,14 +12,15 @@ import {
 } from "@/components/ui/pagination";
 import { useSearchParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/lib/store/store";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
 
   const searchParams = useSearchParams();
   const categorie = searchParams.get("category");
   const user = useAuth();
-  console.log(user);
-  
 
   const products = [
     {
@@ -99,7 +100,7 @@ const HomePage = () => {
               <PaginationPrevious href="#" />
             </PaginationItem>
             <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
+              <PaginationLink  href="#">1</PaginationLink>
             </PaginationItem>
             <PaginationItem>
               <PaginationLink href="#" isActive>

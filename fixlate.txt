@@ -2,3 +2,14 @@ fix the extension of img as well as font
 User model ka avatar filed me default image ka link daldo
 delete the testing route
 add total price column in the usersorderTable
+remove frontend unused variables [dont know which,so check all files]
+
+
+guide:
+want to use redux toolkit, guide in store.ts
+
+redux toolkit usage guide:
+1.homepage page data variable will be redux variable
+2.cart page data variable will be redux variable
+3.userOrders data variable will be redux variable
+
