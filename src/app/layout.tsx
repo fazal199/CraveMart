@@ -7,6 +7,9 @@ import {
   ClerkProvider,
 } from '@clerk/nextjs'
 import StoreProvider from "@/lib/store/StoreProvider";
+import QueryProvider from "@/lib/react-query/QueryProvider";
+import { Toaster } from "@/components/ui/toaster"
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,16 +26,19 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
        <StoreProvider>
-          <body className={inter.className}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-            >
-              {children}
-            </ThemeProvider>
-          </body>
+          <QueryProvider>
+            <body className={inter.className}>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+              </ThemeProvider>
+              <Toaster/>
+            </body>
+          </QueryProvider>
        </StoreProvider>
         <Script src="./test.js" />
       </html>

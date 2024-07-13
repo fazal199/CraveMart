@@ -22,6 +22,7 @@ export function Header() {
           <Image
             src={"/logo.jpg"}
             alt="logo"
+            priority={false}
             className="rounded-full h-[50px] shadow-sm shadow-black"
             height={100}
             width={50}

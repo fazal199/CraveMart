@@ -1,4 +1,4 @@
-// store/slices/exampleSlice.ts
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ExampleState {
@@ -13,7 +13,7 @@ const exampleSlice = createSlice({
   name: 'example',
   initialState,
   reducers: {
-    increment: (state) => {
+    increment: (state,action) => {
       state.value += 1;
     },
     decrement: (state) => {

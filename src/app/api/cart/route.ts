@@ -19,7 +19,7 @@ export const GET = TryCatchBlock(async (req: NextRequest) => {
   const allCartProducts = await CartModal.find({ clerkId });
 
   return new ApiResponse(true, "All Cart Data Fetched!", 200, {
-    allCartProducts
+    allCartProducts,
   });
 }, "/api/cart/function[GET]");
 
@@ -71,7 +71,7 @@ export const PUT = TryCatchBlock(async (req: NextRequest) => {
 }, "/api/cart/function[PUT]");
 
 export const DELETE = TryCatchBlock(async (req: NextRequest) => {
-  const { cartItemId } = await req.json();
+  const cartItemId = req.nextUrl.searchParams.get("cartItemId");
 
   if (!cartItemId) throw new ApiError(400, "plzz Provide CartId");
 

@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FilterSidebar from "./components/FilterSidebar";
-import ProductCard from "../../components/shared/ProductCard";
 import {
   Pagination,
   PaginationContent,
@@ -11,108 +10,81 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useSearchParams } from "next/navigation";
-import { useAuth } from "@clerk/nextjs";
-import { useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/store/store";
+import { useToast } from "@/components/ui/use-toast";
+import { useQuery } from "@tanstack/react-query";
+import { getDataApi } from "@/utils/apiFunctions";
 import { useDispatch } from "react-redux";
+import { setProducts } from "@/lib/store/features/allproducts/allProductsSlice";
+import { AppDispatch } from "@/lib/store/store";
+import ProductGrid from "./components/ProductGrid";
 
 const HomePage = () => {
 
-  const searchParams = useSearchParams();
-  const categorie = searchParams.get("category");
-  const user = useAuth();
+  //toast notification
+  const { toast } = useToast()
 
-  const products = [
-    {
-      id: 1,
-      name: "Cozy Sweater",
-      price: 49.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 2,
-      name: "Leather Backpack",
-      price: 79.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 3,
-      name: "Stylish Sunglasses",
-      price: 29.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 4,
-      name: "Comfortable Sneakers",
-      price: 59.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 5,
-      name: "Elegant Dress",
-      price: 89.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 6,
-      name: "Durable Suitcase",
-      price: 99.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 7,
-      name: "Chic Scarf",
-      price: 24.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 8,
-      name: "Sleek Wallet",
-      price: 39.99,
-      image: "/placeholder.svg",
-    },
-    {
-      id: 9,
-      name: "Sleek Wallet",
-      price: 39.99,
-      image: "/placeholder.svg",
-    },
-  ];
+  const searchParam = useSearchParams()
+
+  //state to manage pages
+  const [page, setPage] = useState<number>(1)
+
+  //state to manage price
+  const [price, setPrice] = useState<number>(1000)
+
+  //state to manage categories
+  const [categories, setCategories] = useState<string[]>([]);
+
+  const dispatch: AppDispatch = useDispatch();
+
+  //making api call first time and whenever the data page or price or categories changes
+  const { data, isError, isLoading } = useQuery({
+    queryKey: ['allproducts', page, price, categories],
+    queryFn: () => getDataApi(`/api/products/allproducts?page=${page}&price=${price}&categories=${categories.length != 0 ? categories : '[]'}`, "Product Data Fetched!", "Something went wrong while fetching productData!", "root component", toast),
+  })
+
+
+  //storing previous and nextpage number
+  const hasPreviousPage = data?.data?.hasPrevPage;
+  const hasNextPage = data?.data?.hasNextPage;
+
+  //storing the product data into the redux state
+  if (data?.data?.productsData)
+    dispatch(setProducts(data.data.productsData))
+
+  const category = searchParam.get("category")
+
+  useEffect(() => {
+    if (category)
+      setCategories([...categories, category])
+
+    setPage(1);
+  }, [categories,price])
+
+
 
   return (
     <section className="grid  grid-cols-[300px_1fr] gap-8 p-6">
-      <FilterSidebar />
+      <FilterSidebar categories={categories} setCategories={setCategories} price={price} setPrice={setPrice} />
       <div>
-        <div className="grid grid-cols-3 gap-6">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              price={product.price}
-            />
-          ))}
-        </div>
-
+        <ProductGrid allproducts={data?.data?.productsData} isLoading={isLoading} isError={isError} />
         <Pagination className="mt-4  text-black py-3">
           <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
+            <PaginationItem className="hover:cursor-pointer">
+              <PaginationPrevious onClick={() => { if (hasPreviousPage) setPage(data?.data?.prevPage) }} className={`${!hasPreviousPage && 'active:bg-white opacity-60 hover:cursor-pointer'}`} />
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink  href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>
-                2
+            {hasPreviousPage && <PaginationItem className="hover:cursor-pointer">
+              <PaginationLink onClick={() => setPage(data?.data?.prevPage)}>{data?.data?.prevPage}</PaginationLink>
+            </PaginationItem>}
+            <PaginationItem className="hover:cursor-pointer">
+              <PaginationLink isActive>
+                {page}
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-
-            <PaginationItem>
-              <PaginationNext href="#" />
+            {hasNextPage && <PaginationItem className="hover:cursor-pointer">
+              <PaginationLink onClick={() => setPage(data?.data?.nextPage)}>{data?.data?.nextPage}</PaginationLink>
+            </PaginationItem>}
+            <PaginationItem className="hover:cursor-pointer">
+              <PaginationNext onClick={() => { if (hasNextPage) setPage(data?.data?.nextPage) }} className={`${!hasNextPage && 'active:bg-white opacity-60 hover:cursor-pointer'}`} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>

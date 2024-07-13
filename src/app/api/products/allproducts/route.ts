@@ -37,7 +37,7 @@ export const GET = TryCatchBlock(async (req: NextRequest) => {
   if (categories?.length != 0) {
     productsData = await ProductModal.find({
       categoryId: { $in: categories },
-      price: { $gte: filterPrice },
+      price: { $lte: filterPrice },
     })
       .limit(9)
       .skip(page * 9 - 9);
@@ -45,12 +45,24 @@ export const GET = TryCatchBlock(async (req: NextRequest) => {
 
   //if the categories are not provided
   else {
-    productsData = await ProductModal.find({ price: { $gte: filterPrice } })
+    productsData = await ProductModal.find({ price: { $lte: filterPrice } })
       .limit(9)
       .skip(page * 9 - 9);
   }
 
-  const totalDocuments = await ProductModal.countDocuments({});
+  let options;
+
+  if (categories.length != 0)
+    options = {
+      price: { $lte: filterPrice },
+      categories: { $in: categories },
+    };
+  else
+    options = {
+      price: { $lte: filterPrice },
+    };
+
+  let totalDocuments = await ProductModal.countDocuments(options);
 
   return new ApiResponse(true, "Product Data Sent Successfully!", 200, {
     productsData,
@@ -58,5 +70,6 @@ export const GET = TryCatchBlock(async (req: NextRequest) => {
     nextPage: page * 9 < totalDocuments ? page + 1 : null,
     hasPrevPage: page > 1,
     prevPage: page > 1 ? page - 1 : null,
+    total: totalDocuments,
   });
 }, "/api/products/allproducts");

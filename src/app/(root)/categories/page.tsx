@@ -8,7 +8,7 @@ const CategoryPage = () => {
     <section className="w-full py-12">
       <h1 className="text-center text-6xl font-semibold mb-12">Categories</h1>
       <div className="container grid  gap-6 grid-cols-2">
-        {categoriesItems.map((categorie) => (
+        {categoriesItems.map((categorie:any) => (
           <CategoryCard
             key={categorie.link}
             link={categorie.link}

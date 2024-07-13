@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const ProductCard = ({ id, name, price }: any) => {
+const ProductCard = ({ id, name, price,imgSrc }: any) => {
   const router = useRouter();
   return (
     <div
@@ -13,11 +13,11 @@ const ProductCard = ({ id, name, price }: any) => {
       className="bg-background rounded-lg shadow-lg overflow-hidden"
     >
       <Image
-        src="/placeholder.svg"
+        src={imgSrc}
         alt={name}
         width={300}
         height={300}
-        className="w-full h-64 object-cover"
+        className="w-full h-64 object-contain"
       />
       <div className="p-4">
         <h3 className="text-base font-semibold mt-2">{name}</h3>
