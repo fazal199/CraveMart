@@ -22,16 +22,23 @@ const getDataApi = async (
     });
   }
 };
-const sendDataApi = async (
-  url: string,
-  postData: any,
-  successMessage: string,
-  failureMessage: string,
-  placeName: string,
-  toast: any
-) => {
+const sendDataApi = async ({
+  url,
+  postData,
+  successMessage,
+  failureMessage,
+  placeName,
+  toast,
+}: {
+  url?: string;
+  postData?: any;
+  successMessage?: string;
+  failureMessage?: string;
+  placeName?: string;
+  toast?: any;
+}) => {
   try {
-    const { data } = await axios.post(url, postData);
+    const { data } = await axios.post(url as string, postData);
     toast({ variant: "default", title: successMessage || "Successfull!" });
     return data;
   } catch (error: any) {
@@ -89,4 +96,4 @@ const updateDataApi = async (
   }
 };
 
-export {getDataApi,sendDataApi,updateDataApi,deleteDataApi}
+export { getDataApi, sendDataApi, updateDataApi, deleteDataApi };

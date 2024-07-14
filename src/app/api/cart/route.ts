@@ -9,7 +9,7 @@ import { ProductModal } from "@/lib/database/models/products.model";
 
 export const GET = TryCatchBlock(async (req: NextRequest) => {
   const clerkId = req.nextUrl.searchParams.get("clerkId");
-  console.log(clerkId);
+ 
 
   if (!clerkId)
     throw new ApiError(400, "Plzz Provide clerkId aka Current User LoginId!");
@@ -41,7 +41,16 @@ export const POST = TryCatchBlock(async (req: NextRequest) => {
 
   if (!product) throw new ApiError(400, "ProductId Doesn't Exist!");
 
-  const cartItem = await CartModal.create({ productId, quantity, clerkId });
+  let cartItem = await CartModal.findOne({ clerkId, productId });
+
+  //if cart item already exist then increase the quantity only
+  if (cartItem) {
+    cartItem.quantity += quantity;
+    await CartModal.bulkSave([cartItem]);
+  }
+
+  //else will create a new cart item
+  else cartItem = await CartModal.create({ productId, quantity, clerkId });
 
   return new ApiResponse(true, "Product Added in Cart!", 200, {
     cartItem,

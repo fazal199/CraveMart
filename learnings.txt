@@ -1,0 +1,1 @@
+1.react query ke api function me dont use try catch they give all the things like error,isLoading and etc.

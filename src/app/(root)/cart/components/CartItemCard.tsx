@@ -4,7 +4,7 @@ import { MinusIcon, PlusIcon, TrashIcon } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
-const CartItems = () => {
+const CartItemCard = () => {
     return (
         <div className="grid gap-4">
             <Card className="flex items-center gap-4 relative px-8">
@@ -42,4 +42,4 @@ const CartItems = () => {
     )
 }
 
-export default CartItems
+export default CartItemCard

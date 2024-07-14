@@ -3,6 +3,7 @@ User model ka avatar filed me default image ka link daldo
 delete the testing route
 add total, price column in the usersorderTable
 remove frontend unused variables [dont know which,so check all files]
+add loaders, and error code in your html means when the loading is going on show something and if comes show something
 
 delete the example feature from redux 
 

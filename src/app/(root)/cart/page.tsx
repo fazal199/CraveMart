@@ -3,9 +3,10 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import React from 'react'
-import CartItems from './components/CartItems'
+import CartItemCard from './components/CartItemCard'
 
 const CartPage = () => {
+
     return (
         <section className="grid grid-cart gap-8 px-6 py-12">
             <div className="grid gap-6">
@@ -15,7 +16,7 @@ const CartPage = () => {
                         Continue Shopping
                     </Link>
                 </div>
-                <CartItems />
+                <CartItemCard />
             </div>
             <Card>
                 <CardHeader>

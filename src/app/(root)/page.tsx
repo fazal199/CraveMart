@@ -54,12 +54,14 @@ const HomePage = () => {
   const category = searchParam.get("category")
 
   useEffect(() => {
+    setPage(1);
+  }, [categories, price])
+
+
+  useEffect(() => {
     if (category)
       setCategories([...categories, category])
-
-    setPage(1);
-  }, [categories,price])
-
+  }, [])
 
 
   return (
