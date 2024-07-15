@@ -3,7 +3,8 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import React from 'react'
-import CartItemCard from './components/CartItemCard'
+import CartGrid from './components/CartGrid'
+
 
 const CartPage = () => {
 
@@ -12,11 +13,11 @@ const CartPage = () => {
             <div className="grid gap-6">
                 <div className="flex items-center justify-between">
                     <h1 className="text-2xl font-bold">Your Cart</h1>
-                    <Link href="#" className="text-first-500 hover:underline" prefetch={false}>
+                    <Link href="/" className="text-first-500 decoration-2 underline hover:tracking-wider transition-all duration-500 ease-out" prefetch={false}>
                         Continue Shopping
                     </Link>
                 </div>
-                <CartItemCard />
+                <CartGrid/>
             </div>
             <Card>
                 <CardHeader>

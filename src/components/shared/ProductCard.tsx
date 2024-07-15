@@ -21,7 +21,7 @@ const ProductCard = ({ id, name, price,imgSrc }: any) => {
       />
       <div className="p-4">
         <h3 className="text-base font-semibold mt-2">{name}</h3>
-        <p className="text-muted-foreground mt-2">${price}</p>
+        <p className="text-muted-foreground mt-2">₹{price}</p>
         <Button
           onClick={() => router.push(`/product/${id}`)}
           variant="outline"

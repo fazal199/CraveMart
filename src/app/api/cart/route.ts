@@ -9,14 +9,42 @@ import { ProductModal } from "@/lib/database/models/products.model";
 
 export const GET = TryCatchBlock(async (req: NextRequest) => {
   const clerkId = req.nextUrl.searchParams.get("clerkId");
- 
+  console.log(clerkId);
 
   if (!clerkId)
     throw new ApiError(400, "Plzz Provide clerkId aka Current User LoginId!");
 
   await dbConnect();
 
-  const allCartProducts = await CartModal.find({ clerkId });
+  const user = await UserModal.findOne({ clerkId });
+
+  if (!user) throw new ApiError(400, "User Doesn't Exist!");
+
+  const allCartProducts = await CartModal.aggregate([
+    {
+      $match: {
+        clerkId,
+      },
+    },
+    {
+      $lookup: {
+        from: "products",
+        localField: "productId",
+        foreignField: "_id",
+        as: "productData",
+      },
+    },
+    {
+      $addFields: {
+        mainProductData: { $arrayElemAt: ["$productData", 0] },
+      },
+    },
+    {
+      $project: {
+        productData: 0,
+      },
+    },
+  ]);
 
   return new ApiResponse(true, "All Cart Data Fetched!", 200, {
     allCartProducts,

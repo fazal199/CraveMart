@@ -51,15 +51,21 @@ const sendDataApi = async ({
     });
   }
 };
-const deleteDataApi = async (
-  url: string,
-  successMessage: string,
-  failureMessage: string,
-  placeName: string,
-  toast: any
-) => {
+const deleteDataApi = async ({
+  url,
+  successMessage,
+  failureMessage,
+  placeName,
+  toast,
+}: {
+  url?: string;
+  successMessage?: string;
+  failureMessage?: string;
+  placeName?: string;
+  toast?: any;
+}) => {
   try {
-    const { data } = await axios.delete(url);
+    const { data } = await axios.delete(url as string);
     toast({ variant: "default", title: successMessage || "Successfull!" });
     return data;
   } catch (error: any) {
@@ -73,14 +79,21 @@ const deleteDataApi = async (
   }
 };
 
-const updateDataApi = async (
-  url: string,
-  postData: any,
-  successMessage: string,
-  failureMessage: string,
-  placeName: string,
-  toast: any
-) => {
+const updateDataApi = async ({
+  url,
+  postData,
+  successMessage,
+  failureMessage,
+  placeName,
+  toast,
+}: {
+  url: string;
+  postData: any;
+  successMessage: string;
+  failureMessage: string;
+  placeName: string;
+  toast: any;
+}) => {
   try {
     const { data } = await axios.put(url, postData);
     toast({ variant: "default", title: successMessage || "Successfull!" });

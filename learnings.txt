@@ -1,1 +1,2 @@
 1.react query ke api function me dont use try catch they give all the things like error,isLoading and etc.
+plzz also add alt field while storing image url in the database
