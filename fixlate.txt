@@ -7,6 +7,7 @@ add loaders, and error code in your html means when the loading is going on show
 go in every file and give types man
 delete the example feature from redux 
 
+
 guide:
 want to use redux toolkit, guide in store.ts
 

@@ -4,6 +4,7 @@ import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 import React from 'react'
 import CartGrid from './components/CartGrid'
+import CartSummary from './components/CartSummary'
 
 
 const CartPage = () => {
@@ -19,29 +20,7 @@ const CartPage = () => {
                 </div>
                 <CartGrid/>
             </div>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Order Summary</CardTitle>
-                </CardHeader>
-                <CardContent className="grid gap-4">
-                    <div className="flex items-center justify-between">
-                        <span>Subtotal</span>
-                        <span>7985</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                        <span>GST (10%)</span>
-                        <span>4687</span>
-                    </div>
-                    <Separator />
-                    <div className="flex items-center justify-between font-medium">
-                        <span>Total</span>
-                        <span>487</span>
-                    </div>
-                </CardContent>
-                <CardFooter>
-                    <Button className="w-full bg-first-500 hover:bg-white hover:text-first-500 hover:border-first-500 border-2 border-solid">Proceed to Checkout</Button>
-                </CardFooter>
-            </Card>
+           <CartSummary/>
         </section>
     )
 }

@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import CardItem from './CardItem'
 import { useDispatch } from 'react-redux'
-import { setProducts } from '@/lib/store/features/allproducts/allProductsSlice'
+import { setCartProducts } from '@/lib/store/features/cartproducts/cartProductsSlice'
 
 const CartGrid = () => {
 
@@ -22,8 +22,9 @@ const CartGrid = () => {
     })
 
     //set the state of the redux
-    if (data?.data?.allCartProducts)
-        dispatch(setProducts(data?.data?.allCartProducts))
+    if(data?.data?.allCartProducts)
+    dispatch(setCartProducts(data?.data?.allCartProducts));
+    
 
     return (
         <div className="grid gap-4">

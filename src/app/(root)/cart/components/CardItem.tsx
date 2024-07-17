@@ -24,7 +24,7 @@ const CardItem = ({ id, imgSrc, alt, title, price, quantity }: any) => {
             toast({
                 title: 'Quantity Updated!',
             });
-            // Optionally invalidate or refetch queries here
+            queryClient.invalidateQueries({ queryKey: ['cartproducts'] })
         },
         onError: () => {
             toast({

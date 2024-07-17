@@ -5,7 +5,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { getDataApi, sendDataApi } from "@/utils/apiFunctions";
 import { useAuth } from "@clerk/nextjs";
 import { Label } from "@radix-ui/react-label";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { PlusIcon, MinusIcon } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -13,6 +13,7 @@ import React, { useState } from "react";
 
 const ProductDetailPage = () => {
 
+  const queryClient = useQueryClient();
   const { toast } = useToast();
 
   //the id of the product
@@ -38,6 +39,7 @@ const ProductDetailPage = () => {
     mutationFn: sendDataApi,
     onSuccess: () => {
       toast({ title: "Product Added to the Cart Successfully!" })
+      queryClient.invalidateQueries({ queryKey: ['cartproducts'] })
     },
     onError: () => {
       toast({ title: "Something Went wrong while adding the product to the Cart!" })
