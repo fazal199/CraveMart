@@ -44,8 +44,6 @@ const FilterSidebar = ({ price, setPrice, categories, setCategories }: FilterSid
       setCategories(tempCategories)
     }
 
-    console.log(action, categoryId);
-
   }
 
   return (

@@ -37,11 +37,13 @@ const HomePage = () => {
   const dispatch: AppDispatch = useDispatch();
 
   //making api call first time and whenever the data page or price or categories changes
-  const { data, isError, isLoading } = useQuery({
+  const { data, isError, isLoading,error } = useQuery({
     queryKey: ['allproducts', page, price, categories],
     queryFn: () => getDataApi(`/api/products/allproducts?page=${page}&price=${price}&categories=${categories.length != 0 ? categories : '[]'}`, "Product Data Fetched!", "Something went wrong while fetching productData!", "root component", toast),
   })
 
+  console.log(isError,error);
+  
 
   //storing previous and nextpage number
   const hasPreviousPage = data?.data?.hasPrevPage;

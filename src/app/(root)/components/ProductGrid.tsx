@@ -5,10 +5,10 @@ import React from 'react'
 type ProductGridType = {
     isLoading: boolean,
     isError: boolean,
-    allproducts : any,
+    allproducts: any,
 }
 
-const ProductGrid = ({allproducts, isLoading, isError }: ProductGridType) => {
+const ProductGrid = ({ allproducts, isLoading, isError }: ProductGridType) => {
 
 
     return (

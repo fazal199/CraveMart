@@ -1,5 +1,5 @@
 import axios from "axios";
-import { log } from "console";
+
 
 const getDataApi = async (
   url: string,

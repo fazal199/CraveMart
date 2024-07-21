@@ -16,11 +16,10 @@ const CartSummary = () => {
         return prev + (next.quantity * next.mainProductData.price);
     }, 0);
 
-    const gstAmount = subTotal * 10 / 100;
 
     useEffect(() => {
-        sessionStorage.setItem('totalPrice', subTotal + gstAmount);
-    }, [gstAmount, subTotal])
+        sessionStorage.setItem('totalPrice', subTotal);
+    }, [subTotal])
 
     return (
         <Card>
@@ -28,18 +27,10 @@ const CartSummary = () => {
                 <CardTitle>Order Summary</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
-                <div className="flex items-center justify-between">
-                    <span>Subtotal</span>
-                    <span>₹{allCartProducts.length == 0 ? 0 : subTotal}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                    <span>GST (10%)</span>
-                    <span>₹{allCartProducts.length == 0 ? 0 : gstAmount}</span>
-                </div>
                 <Separator />
                 <div className="flex items-center justify-between font-medium">
                     <span>Total</span>
-                    <span>₹{allCartProducts.length == 0 ? 0 : gstAmount + subTotal}</span>
+                    <span>₹{allCartProducts.length == 0 ? 0 : subTotal}</span>
                 </div>
             </CardContent>
             <CardFooter>

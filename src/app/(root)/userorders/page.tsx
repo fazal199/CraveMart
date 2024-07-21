@@ -5,6 +5,12 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Badge } from "@/components/ui/badge"
 import React from 'react'
 import { PaginationEllipsis, PaginationItem, PaginationNext, PaginationContent, PaginationLink, Pagination, PaginationPrevious } from "@/components/ui/pagination"
+import { useQuery } from "@tanstack/react-query"
+import { getDataApi } from "@/utils/apiFunctions"
+import { useAuth } from "@clerk/nextjs"
+import { useToast } from "@/components/ui/use-toast"
+import { DataTable } from "./DataTable"
+import { UserOrdercolumns } from "./columns"
 
 const orders = [
   {
@@ -42,49 +48,186 @@ const orders = [
     paymentMode: "PayPal",
     orderStatus: "Pending",
   },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
+  {
+    id: 5,
+    orderDate: "2023-02-28",
+    totalProducts: 1,
+    paymentMode: "PayPal",
+    orderStatus: "Pending",
+  },
 ]
 
 const UserOrderspage = () => {
+
+  const { userId } = useAuth();
+  const { toast } = useToast();
+  // const { data, isError, isLoading } = useQuery({
+  //   queryKey: ['userorders'],
+  //   queryFn: () => getDataApi(`/api/orders?clerkId=${userId}&page=1`, "User Orders Fetched!", "Opps! Something went wrong!", 'Error in userorderspage', toast)
+  // })
+
+  // console.log(data);
+
+
   return (
     <section>
       <Card className="max-w-7xl mx-auto mt-12">
-        <CardHeader className="px-6 py-4 border-b">
-          <div className="grid grid-cols-4 gap-4">
-            <div>
-              <Input
-                placeholder="Search Order Date"
-                value={"1-06-2023"}
-                className="text-center"
-
-              />
-            </div>
-            <div>
-              <Input
-                placeholder="Search Total Products"
-                value={"1-06-2023"}
-                className="text-center"
-              />
-            </div>
-            <div>
-              <Input
-                placeholder="Search Payment Mode"
-                value={"1-06-2023"}
-                className="text-center"
-
-              />
-            </div>
-            <div>
-              <Input
-                placeholder="Search Order Status"
-                value={"1-06-2023"}
-                className="text-center"
-
-              />
-            </div>
-          </div>
-        </CardHeader>
         <CardContent className="p-6">
-          <Table>
+          {/* <Table>
             <TableHeader className="text-xl">
               <TableRow>
                 <TableHead className="cursor-pointer text-center">
@@ -101,51 +244,49 @@ const UserOrderspage = () => {
                 </TableHead>
                 <TableHead className="cursor-pointer text-center" >
                   Order Status
-
                 </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className="text-lg">
-              {orders.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell className="text-center py-5">{order.orderDate}</TableCell>
-                  <TableCell className="text-center py-5">{order.totalProducts}</TableCell>
-                  <TableCell className="text-center py-5">{order.paymentMode}</TableCell>
-                  <TableCell>
-                    <Badge className={`text-xs text-center block py-5 mx-auto w-5/12 ${order.orderStatus == "Delivered" ? 'bg-green-500' : 'bg-red-500'}`}>
-                      {order.orderStatus}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
+
+
+              {
+                !isLoading ? (
+                  !isError ? (
+
+                    orders.length != 0 ? (
+                      orders.map((order) => (
+                        <TableRow key={order.id}>
+                          <TableCell className="text-center py-5">{order.orderDate}</TableCell>
+                          <TableCell className="text-center py-5">{order.totalProducts}</TableCell>
+                          <TableCell className="text-center py-5">{order.paymentMode}</TableCell>
+                          <TableCell>
+                            <Badge className={`text-xs text-center block py-5 mx-auto w-5/12 ${order.orderStatus == "Delivered" ? 'bg-green-500' : 'bg-red-500'}`}>
+                              {order.orderStatus}
+                            </Badge>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow><TableCell><h1>You Haven't Ordered anything yet!</h1></TableCell></TableRow>
+
+                    )
+
+                  ) : (
+                    <TableRow><TableCell><h1>Something went wrong, plzz try later!</h1></TableCell></TableRow>
+                  )
+                ) : (
+                  <TableRow><TableCell><h1>Loading..!</h1></TableCell></TableRow>
+                )
+              }
+
+              
             </TableBody>
-          </Table>
+          </Table> */}
+            <DataTable data={orders} columns={UserOrdercolumns} />
         </CardContent>
       </Card>
-      <Pagination className="mt-4  text-black py-3">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+     
     </section>
   )
 }

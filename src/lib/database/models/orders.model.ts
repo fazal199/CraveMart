@@ -8,6 +8,9 @@ export interface OrderInterface extends Document {
   address: string;
   phoneNumber: string;
   totalPrice: number;
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -47,6 +50,24 @@ const orderSchema: Schema<OrderInterface> = new Schema(
     totalPrice: {
       type: Number,
       required: [true, "totalPrice is required!"],
+      trim: true,
+    },
+    razorpay_order_id: {
+      type: String,
+      default: "not online",
+      lowercase: true,
+      trim: true,
+    },
+    razorpay_payment_id: {
+      type: String,
+      default: "not online",
+      lowercase: true,
+      trim: true,
+    },
+    razorpay_signature: {
+      type: String,
+      default: "not online",
+      lowercase: true,
       trim: true,
     },
   },
