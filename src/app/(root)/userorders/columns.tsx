@@ -2,12 +2,13 @@
 
 import { Badge } from "@/components/ui/badge"
 import { CaretSortIcon } from "@radix-ui/react-icons"
-import { ArrowUpNarrowWide, ArrowDownNarrowWide, ArrowDownIcon, ArrowUpIcon } from "lucide-react"
+import { ArrowDownIcon, ArrowUpIcon } from "lucide-react"
 
 
 const HeaderTag = ({ column, title }: { column: any, title: any }) => {
     //if true then ascending, otherwise descending :)
     const order = column.getIsSorted() === "asc"
+
     return (<div onClick={() => column.toggleSorting(order)} className="text-xl font-semibold flex gap-2 justify-center items-center cursor-pointer">
 
         <span>{title}</span>
@@ -32,8 +33,7 @@ export const UserOrdercolumns: any = [
         header: ({ column }: { column: any }) => <HeaderTag column={column} title={"OrderDate"} />,
         //this is cell
         cell: ({ row }: { row: any }) => {
-
-            return <div className="text-center text-lg font-medium">{row.getValue("orderDate")}</div>
+            return <div className="text-center text-lg font-medium">{row.getValue("orderDate").split("T")[0]}</div>
         },
     },
     {
@@ -58,14 +58,14 @@ export const UserOrdercolumns: any = [
         },
     },
     {
-        accessorKey: "orderStatus",
+        accessorKey: "deliveryStatus",
         //this is header styling 
-        header: ({ column }: { column: any }) => <HeaderTag column={column} title={"OrderStatus"} />,
+        header: ({ column }: { column: any }) => <HeaderTag column={column} title={"Delivery Status"} />,
 
         //this is cell styling
         cell: ({ row }: { row: any }) => {
 
-            const value = row.getValue("orderStatus");
+            const value = row.getValue("deliveryStatus");
 
             return (
                 <Badge className={`text-xs text-center block py-5 w-5/12 mx-auto ${value == "Delivered" ? 'bg-green-500' : 'bg-red-500'}`}>
