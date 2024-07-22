@@ -3,6 +3,7 @@ import mongoose, { Schema, model } from "mongoose";
 export interface UserInterface extends Document {
   username: string;
   avatar?: string;
+  publicId?: string;
   email: string;
   clerkId: string;
   createdAt: Date;
@@ -27,7 +28,12 @@ const userSchema: Schema<UserInterface> = new Schema(
     },
     avatar: {
       type: String,
-      default: "/",
+      default:
+        "https://res.cloudinary.com/deshu7tvf/image/upload/v1721645110/cravemart/bpmnpkdw0x7u0dykd5ga.webp",
+    },
+    publicId: {
+      type: String,
+      default: "",
     },
     clerkId: {
       type: String,

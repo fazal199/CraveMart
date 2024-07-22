@@ -49,13 +49,13 @@ export const POST = TryCatchBlock(async (req: NextRequest) => {
   console.log(evt);
   // CREATE
   if (eventType === "user.created") {
-    const { id, email_addresses, username, image_url } = evt.data;
+    const { id, email_addresses, username } = evt.data;
 
     await createUser({
       username: username,
-      avatar: image_url || "",
       email: email_addresses[0].email_address,
       clerkId: id,
+      publicId: "",
     });
 
     return new ApiResponse(true, "User Created Successfully!", 200);
@@ -63,11 +63,10 @@ export const POST = TryCatchBlock(async (req: NextRequest) => {
 
   // UPDATE
   if (eventType === "user.updated") {
-    const { id, image_url, username, email_addresses } = evt.data;
+    const { id, username, email_addresses } = evt.data;
 
     await updateUser(id, {
       username: username,
-      avatar: image_url,
       email: email_addresses[0].email_address,
       clerkId: id,
     });

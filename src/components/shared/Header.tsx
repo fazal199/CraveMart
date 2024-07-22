@@ -10,10 +10,10 @@ import { SignedIn, SignedOut, useAuth } from "@clerk/clerk-react";
 
 export function Header() {
   const pathname = usePathname();
-  const {isSignedIn} = useAuth();
+  const { isSignedIn } = useAuth();
 
-  
-  
+
+
 
   return (
     <header className="box-shadow-light py-2">
@@ -33,7 +33,7 @@ export function Header() {
           <ul className="flex items-center gap-10 capitalize">
             {navItems.map((item) => {
 
-              if(item.link == "/profile" && !isSignedIn)
+              if (item.link == "/profile" && !isSignedIn)
                 return;
 
               return <li key={item.name}>
@@ -77,7 +77,7 @@ export function Header() {
           </SignedOut>
 
           <Avatar className="h-10 w-10 border-purple-500 border-2">
-            <AvatarImage src="/placeholder-user.jpg" />
+            <AvatarImage src={sessionStorage.getItem("avatar") || "/placeholder-user.webp"} />
             <AvatarFallback>JP</AvatarFallback>
           </Avatar>
 

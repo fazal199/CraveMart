@@ -1,6 +1,5 @@
 "use client"
 import { useAuth } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { useToast } from '../ui/use-toast';
 import { useQuery } from '@tanstack/react-query';
@@ -9,10 +8,6 @@ import { getDataApi } from '@/utils/apiFunctions';
 const UserDataEmpty = () => {
 
     const { userId } = useAuth();
-    const router = useRouter();
-
-    if (!userId)
-        router.push("/sign-in")
 
     const { toast } = useToast();
 
@@ -24,9 +19,12 @@ const UserDataEmpty = () => {
 
     useEffect(() => {
 
-        sessionStorage.setItem("username", data?.data?.username);
-        sessionStorage.setItem("avatar", data?.data?.avatar);
-        sessionStorage.setItem("email", data?.data?.email);
+        if (data) {
+            sessionStorage.setItem("username", data?.data?.username);
+            sessionStorage.setItem("avatar", data?.data?.avatar);
+            sessionStorage.setItem("email", data?.data?.email);
+        }
+
 
     }, [data, userId])
 
