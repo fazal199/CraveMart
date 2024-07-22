@@ -23,7 +23,6 @@ const UserOrderspage = () => {
     queryFn: () => getDataApi(`/api/orders?clerkId=${userId}&page=1`, "User Orders Fetched!", "Opps! Something went wrong!", 'Error in userorderspage', toast)
   })
 
-  console.log(data?.data?.orderDetails);
 
 
   return (
@@ -34,7 +33,8 @@ const UserOrderspage = () => {
           {
             !isLoading ? (
               !isError ? (
-                <DataTable data={data?.data?.orderDetails} columns={UserOrdercolumns} />
+                <DataTable data={data?.data} columns={UserOrdercolumns} />
+
               ) : (
                 <h1>Something went wrong!</h1>
               )

@@ -70,10 +70,8 @@ export const POST = TryCatchBlock(async (req: NextRequest) => {
 
 export const GET = TryCatchBlock(async (req: NextRequest) => {
   const clerkId = req.nextUrl.searchParams.get("clerkId");
-  let page: number = Number(req.nextUrl.searchParams.get("page"));
 
   if (!clerkId) throw new ApiError(400, "Plzz Provide ClerkId aka UserId!");
-  if (!page) throw new ApiError(400, "Plzz Provide pageNo!");
 
   await dbConnect();
 
@@ -103,17 +101,7 @@ export const GET = TryCatchBlock(async (req: NextRequest) => {
         products: 0,
       },
     },
-  ])
-    .limit(20)
-    .skip(page * 20 - 20);
+  ]);
 
-  const totalDocuments = await OrderModal.countDocuments({ clerkId });
-
-  return new ApiResponse(true, "Order Data Fetched!", 200, {
-    orderDetails,
-    hasNextPage: page * 20 < totalDocuments,
-    nextPage: page * 20 < totalDocuments ? page + 1 : null,
-    hasPrevPage: page > 1,
-    prevPage: page > 1 ? page - 1 : null,
-  });
+  return new ApiResponse(true, "Order Data Fetched!", 200, orderDetails);
 }, "/api/orders[GET]");

@@ -26,9 +26,11 @@ const ProfilePage = () => {
                     </div>
                 </div>
                 <div className="grid gap-3">
-                    <Button variant="outline" className="w-full bg-first-500 text-primary-foreground active:bg-first-200">
-                        Your Orders
-                    </Button>
+                    <Link href={"/userorders"}>
+                        <Button variant="outline" className="w-full bg-first-500 text-primary-foreground active:bg-first-200">
+                            Your Orders
+                        </Button>
+                    </Link>
                    <Link href="/editprofile">
                         <Button variant="outline" className="w-full bg-first-500 text-primary-foreground active:bg-first-200">
                             Edit Profile

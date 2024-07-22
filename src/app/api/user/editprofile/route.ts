@@ -5,15 +5,15 @@ import { NextRequest } from "next/server";
 import dbConnect from "@/lib/database/dbConfig";
 import ApiError from "@/utils/apiError";
 
-export const POST = TryCatchBlock(async (req: NextRequest) => {
+export const PUT = TryCatchBlock(async (req: NextRequest) => {
   const { username, email, clerkId } = await req.json();
-
-  await dbConnect();
 
   if (!username || !email || !clerkId)
     throw new ApiError(401, "Plzz Provide All Details!");
 
-  const createdUser = await UserModal.updateOne(
+  await dbConnect();
+
+  const updatedUser = await UserModal.updateOne(
     { clerkId },
     {
       $set: {
@@ -24,5 +24,5 @@ export const POST = TryCatchBlock(async (req: NextRequest) => {
     }
   );
 
-  return new ApiResponse(true, "User created!", 200, createdUser);
+  return new ApiResponse(true, "User Data Updated!", 200, updatedUser);
 }, "/api/editprofile");
