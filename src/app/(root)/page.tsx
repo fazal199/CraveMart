@@ -37,13 +37,13 @@ const HomePage = () => {
   const dispatch: AppDispatch = useDispatch();
 
   //making api call first time and whenever the data page or price or categories changes
-  const { data, isError, isLoading,error } = useQuery({
+  const { data, isError, isLoading, error } = useQuery({
     queryKey: ['allproducts', page, price, categories],
     queryFn: () => getDataApi(`/api/products/allproducts?page=${page}&price=${price}&categories=${categories.length != 0 ? categories : '[]'}`, "Product Data Fetched!", "Something went wrong while fetching productData!", "root component", toast),
   })
 
-  console.log(isError,error);
-  
+  console.log(isError, error);
+
 
   //storing previous and nextpage number
   const hasPreviousPage = data?.data?.hasPrevPage;
@@ -60,10 +60,11 @@ const HomePage = () => {
   }, [categories, price])
 
 
+  //to show the product of only one categorie if the user comes from categorie page by click an categorie
   useEffect(() => {
     if (category)
       setCategories([...categories, category])
-  }, [])
+  },[])
 
 
   return (

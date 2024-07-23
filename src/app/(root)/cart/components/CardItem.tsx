@@ -85,7 +85,7 @@ const CardItem = ({ id, imgSrc, alt, title, price, quantity }: any) => {
                 clearTimeout(timeoutRef.current);
             }
         };
-    }, [currentQuantityClient]);
+    }, [currentQuantityClient, debounceHandleUpdateQuantity, quantity]);
 
 
     return (

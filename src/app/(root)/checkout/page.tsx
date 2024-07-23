@@ -188,6 +188,7 @@ const CheckOutPage = () => {
   return (
     <>
       <Script
+        defer
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
@@ -268,7 +269,6 @@ const CheckOutPage = () => {
           </CardContent>
 
         </Card>
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       </section>
     </>
   )

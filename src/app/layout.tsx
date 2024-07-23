@@ -40,7 +40,7 @@ export default function RootLayout({
             </body>
           </QueryProvider>
        </StoreProvider>
-        <Script src="./test.js" />
+      
       </html>
     </ClerkProvider>
   );
