@@ -27,7 +27,6 @@ import { useMutation } from '@tanstack/react-query';
 import { sendDataApi } from '@/utils/apiFunctions';
 import { useToast } from '@/components/ui/use-toast';
 import { makePayment } from '@/lib/actions/transaction.actions';
-import Razorpay from 'razorpay';
 import Script from 'next/script';
 
 const CheckOutPage = () => {
@@ -163,7 +162,7 @@ const CheckOutPage = () => {
           },
         };
 
-        const paymentObject = new window.Razorpay(razorpayOptions);
+        const paymentObject = new (window as any).Razorpay(razorpayOptions);
         paymentObject.open();
       } catch (error: any) {
         toast({
